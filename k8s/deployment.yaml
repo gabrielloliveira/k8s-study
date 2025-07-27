@@ -17,7 +17,7 @@ spec:
       containers:
         - name: fastapi-server
           image: gabrielloliveira/fastapi-helloworld:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: fastapi-server
               containerPort: 80
