@@ -22,4 +22,7 @@ spec:
             - name: fastapi-server
               containerPort: 80
               protocol: TCP
+          env:
+            - name: NAME
+              value: "Gabriell"
       restartPolicy: Always
