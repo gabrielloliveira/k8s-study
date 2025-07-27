@@ -9,6 +9,6 @@ RUN pip install -r requirements.txt
 # Copy the application code
 COPY . .
 # Expose the port the app runs on
-EXPOSE 8000
+EXPOSE 80
 # Command to run the application
-CMD ["fastapi", "dev", "main.py", "--host", "0.0.0.0"]
+CMD ["fastapi", "dev", "main.py", "--host", "0.0.0.0", "--port", "80"]
