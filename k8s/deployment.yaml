@@ -22,7 +22,15 @@ spec:
             - name: fastapi-server
               containerPort: 80
               protocol: TCP
-          env:
-            - name: NAME
-              value: "Gabriell"
+          # Mode 1: Using environment variables directly
+          #          env:
+          #            - name: NAME
+          #              valueFrom:
+          #                configMapKeyRef:
+          #                  name: fastapi-server-env
+          #                  key: NAME
+          # Mode 2: Using ConfigMap to set all environment variables
+          envFrom:
+            - configMapRef:
+                name: fastapi-server-env
       restartPolicy: Always
