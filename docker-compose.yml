@@ -2,5 +2,7 @@ services:
   app:
     build:
       context: .
+    image: gabrielloliveira/fastapi-helloworld:latest
+    container_name: fastapi-helloworld
     ports:
       - "8000:8000"
