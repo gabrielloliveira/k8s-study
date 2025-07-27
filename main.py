@@ -8,4 +8,5 @@ app = FastAPI()
 @app.get("/")
 async def index():
     name = os.getenv("NAME", "NO NAME")
-    return {"message": f"Hello, {name}!"}
+    secret = os.getenv("SECRET_KEY", "NO SECRET")
+    return {"message": f"Hello, {name}! Your secret is {secret}."}

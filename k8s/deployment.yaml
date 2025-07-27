@@ -33,4 +33,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: fastapi-server-env
+            - secretRef:
+                name: fastapi-server-secret
       restartPolicy: Always
