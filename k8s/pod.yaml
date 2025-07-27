@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fastapi-server
+  labels:
+    role: fastapi-server
+spec:
+  containers:
+    - name: fastapi-server
+      image: gabrielloliveira/fastapi-helloworld:latest
+      imagePullPolicy: IfNotPresent
+      ports:
+        - name: fastapi-server
+          containerPort: 80
+          protocol: TCP
+  restartPolicy: Always
+  
