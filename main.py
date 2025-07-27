@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -5,4 +7,5 @@ app = FastAPI()
 
 @app.get("/")
 async def index():
-    return {"message": "Hello, World!"}
+    name = os.getenv("NAME", "NO NAME")
+    return {"message": f"Hello, {name}!"}
