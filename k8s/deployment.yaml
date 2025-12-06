@@ -35,4 +35,18 @@ spec:
                 name: fastapi-server-env
             - secretRef:
                 name: fastapi-server-secret
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 1
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /healthz
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            failureThreshold: 1
       restartPolicy: Always
