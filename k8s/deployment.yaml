@@ -18,23 +18,26 @@ spec:
         - name: fastapi-server
           image: gabrielloliveira/fastapi-helloworld:latest
           imagePullPolicy: Always
+
+          resources:
+            requests:
+              cpu: "0.1" # 0.1 core ou 100m
+              memory: "100Mi" # 100 MiB
+            limits:
+                cpu: "0.1" # 0.1 core ou 100m
+                memory: "100Mi" # 100 MiB
+
           ports:
             - name: fastapi-server
               containerPort: 80
               protocol: TCP
-          # Mode 1: Using environment variables directly
-          #          env:
-          #            - name: NAME
-          #              valueFrom:
-          #                configMapKeyRef:
-          #                  name: fastapi-server-env
-          #                  key: NAME
-          # Mode 2: Using ConfigMap to set all environment variables
+
           envFrom:
             - configMapRef:
                 name: fastapi-server-env
             - secretRef:
                 name: fastapi-server-secret
+
           startupProbe:
             httpGet:
               port: 80
@@ -42,16 +45,19 @@ spec:
             initialDelaySeconds: 0
             periodSeconds: 10
             failureThreshold: 30
+
           readinessProbe:
             httpGet:
               path: /healthz
               port: 80
             periodSeconds: 10
             failureThreshold: 1
+
           livenessProbe:
             httpGet:
               port: 80
               path: /healthz
             periodSeconds: 20
             failureThreshold: 1
+
       restartPolicy: Always
